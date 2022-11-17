@@ -1,3 +1,5 @@
+import re
+import sys
 # list token untuk syntax ke token
 token_exp = [  
     (r'[ \t]+',                     None),                          # Tab char
@@ -7,7 +9,10 @@ token_exp = [
     # Integer and String
     (r'\"[^\"\n]*\"',               "STRING"),                          # "string"  (apapun yang bukan " dan string)    
     (r'\'[^\'\n]*\'',               "STRING"),                          # 'string'
-    (r'[\+\-]? [0-9]* \.[0-9]+',    "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
+    # (r'[\+\-]?[0-9]*\.[0-9]+',      "INT"),
+    # (r'[\+\-]?[1-9][0-9]+',         "INT"),
+    # (r'[\+\-]?[0-9]',               "INT"),
+    (r'[\+\-]?[0-9]*\.[0-9]+',    "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
     (r'[\+\-]?[1-9][0-9]+',         "NUM"),                             # membaca int, untuk 2 angka atau lebih
     (r'[\+\-]?[0-9]',               "NUM"),                             # membaca int untuk tepat satu angka
 
@@ -23,30 +28,30 @@ token_exp = [
     (r'\:',                             "TITIKDUA"),
 
     # Operator
-    (r'\* \* \=',                   "POWAS"),                        
-    (r'\* \*',                      "POW"),
-    (r'\/ \/ \=',                   "FLOORDIVAS"),
-    (r'\/ \/',                      "FLOORDIV"),
-    (r'\* \=',                      "MULAS"),
-    (r'\/ \=',                      "DIVAS"),
-    (r'\+ \=',                      "ADDAS"),
-    (r'\- \=',                      "SUBAS"),
-    (r'\% \=',                      "MODAS"),
-    (r'\- \>',                      "ARROW"),
+    (r'\*\*\=',                   "POWAS"),                        
+    (r'\*\*',                      "POW"),
+    (r'\/\/\=',                   "FLOORDIVAS"),
+    (r'\/\/',                      "FLOORDIV"),
+    (r'\*\=',                      "MULAS"),
+    (r'\/\=',                      "DIVAS"),
+    (r'\+\=',                      "ADDAS"),
+    (r'\-\=',                      "SUBAS"),
+    (r'\%\=',                      "MODAS"),
+    (r'\-\>',                      "ARROW"),
     (r'\+',                         "ADD"),
     (r'\-',                         "SUB"),
     (r'\*',                         "MUL"),
     (r'\/',                         "DIV"),
     (r'\%',                         "MOD"),
-    (r'\< \=',                      "LEQ"),
+    (r'\<\=',                      "LEQ"),
     (r'\<',                         "L"),
-    (r'\> \=',                      "GEQ"),
+    (r'\>\=',                      "GEQ"),
     (r'\>',                         "G"),
-    (r'\! \=',                      "NEQ"),
-    (r'\= \=',                      "ISEQ"),
+    (r'\!\=',                      "NEQ"),
+    (r'\=\=',                      "ISEQ"),
     (r'\=(?!\=)',                   "EQ"),
-    (r'\& \&',                      "AND"),
-    (r'\| \|',                      "OR"),
+    (r'\&\&',                      "AND"),
+    (r'\|\|',                      "OR"),
     (r'\!',                         "NOT"),
 
     # Keyword
@@ -101,8 +106,8 @@ token_exp = [
 
     (r'\'\'\'[(?!(\'\'\'))\w\W]*\'\'\'',       "MULTILINE"),
     (r'\"\"\"[(?!(\"\"\"))\w\W]*\"\"\"',       "MULTILINE"),
-    (r'[A-Za-z_][A-Za-z0-9_]*', "ID"),
-
+    (r'[A-Za-z_][A-Za-z0-9_]*',                 "ID"),
+    
     # (r'\brange\b',              "RANGE"), 
     # (r'\bthen\b',               "THEN"),
 
@@ -128,8 +133,56 @@ x(?!y)          -> munculnya karakter x tidak boleh diikuti oleh y
 
 """
 
+def lexer(input, token_exp):
+    posAbs = 0 # Menggambarkan posisi absolute terhadap posisi start file
+    posRel = 1 # Menggambarkan posisi relative terhadap new line
+    line = 1 # Menggambarkan banyaknya jumlah line dalam file 
+
+    # Array untuk menampung token yang dibaca dari file
+    tokenResult = []
+
+    #Membaca file sampai selesai 
+    while(posAbs < len(input)):
+        #Jika membaca new line, posRel direset ke 1 dan jumlah line bertambah 1
+        if(input[posAbs] == '\n'):
+            posRel = 1
+            line +=1
+        match = None
+
+        # Looping token di dalam token_exp
+        for token in token_exp:
+            # Pecah token menjadi pattern dan tag (tag = Nama token)
+            pattern,tag = token
+            # Mengubah string di regex menjadi sebuah pattern dalam bentuk regex
+            regex = re.compile(pattern)
+
+            # isMatched bernilai benar kalau ada regex yang sama dengan value atau kata yang dibaca 
+            isMatched = regex.match(input,posAbs)
+
+            #Jika ada regex yang memenuhi value, cek value tag
+            if(isMatched):
+                #Jika tag tidak bernilai None, masukan tag ke dalam token result
+                if (tag):
+                    tokenResult.append(tag)
+                break #break kalau sudah ketemu dan terjadi akuisisi, sehingga tidak melanjutkan looping sampai token_exp terakhir
+        
+        #Kalau misalnya tidak ada regex yang memenuhi value yang sedang dibaca
+        if not isMatched : 
+            #Syntax salah dan program pasti salah
+            print('Illegal Move')
+            print("Sytax ERROR")
+            sys.exit(1)
+        else:
+            posAbs = isMatched.end(0) #pindahin pos ke akhir pembacaan value yang matched dengan regex
+        posRel += 1
+    #Mengembalikan token result
+    return tokenResult
+
 def createToken(namaFile):
     file = open(namaFile)
-    character = file.read()
+    input = file.read()
     file.close()
+    print(lexer(input,token_exp))
+
+createToken('tes.js')
     
