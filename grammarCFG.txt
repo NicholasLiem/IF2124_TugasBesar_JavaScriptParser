@@ -1,4 +1,4 @@
-S -> ENTER S
+S -> ENTER S        
 S -> S ENTER
 S -> ENTER
 S -> IMPORT_STMT

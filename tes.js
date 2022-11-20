@@ -1,14 +1,10 @@
-console.log("hai = 1")
-console.log(
+class Car{
+    constructor(height,width=2){
+        this.area 
+        console.log(this.area)
+    }
+}
 
+var car = new Car(4)
 
-
-
-
-
-
-
-
-
-    "halo", 10
-)
+var Hai = "tes"
