@@ -2,19 +2,16 @@ import re
 import sys
 # list token untuk syntax ke token
 token_exp = [  
-    (r'[ \t]+',                     None),                          # Tab char
-    (r'\/\/ [^\n]*',                None),                          # single line comment
-    (r'[\n]+ [ \t]* \/\* [(?!(\'\'\'))\w\W]* \*\/',  None),         # /* multi line comment*/
+    (r'[ \t]+',                                      None),                         # Tab char
+    (r'\/\/ [^\n]*',                                 None),                         # single line comment
+    (r'[\n]+ [ \t]* \/\* [(?!(\'\'\'))\w\W]* \*\/',  None),                         # /* multi line comment*/
 
     # Integer and String
     (r'\"[^\"\n]*\"',               "STRING"),                          # "string"  (apapun yang bukan " dan string)    
     (r'\'[^\'\n]*\'',               "STRING"),                          # 'string'
-    # (r'[\+\-]?[0-9]*\.[0-9]+',      "INT"),
-    # (r'[\+\-]?[1-9][0-9]+',         "INT"),
-    # (r'[\+\-]?[0-9]',               "INT"),
-    (r'[\+\-]?[0-9]*\.[0-9]+',    "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
-    (r'[\+\-]?[1-9][0-9]+',         "NUM"),                             # membaca int, untuk 2 angka atau lebih
-    (r'[\+\-]?[0-9]',               "NUM"),                             # membaca int untuk tepat satu angka
+    (r'[\+\-]?[0-9]*\.[0-9]+',          "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
+    (r'[\+\-]?[1-9][0-9]+',             "NUM"),                             # membaca int, untuk 2 angka atau lebih
+    (r'[\+\-]?[0-9]',                   "NUM"),                             # membaca int untuk tepat satu angka
 
     # Delimiter
     (r'\n',                             "NEWLINE"),                             
@@ -28,21 +25,26 @@ token_exp = [
     (r'\:',                             "TITIKDUA"),
 
     # Operator
-    (r'\*\*\=',                   "POWAS"),                        
+    # Arithmatical Operator
+    (r'\+',                         "ADD"),
+    (r'\+\=',                      "ADDAS"),
+    (r'\+\+',                      "INCREMENT"),
+    (r'\-',                         "SUB"),
+    (r'\-\=',                      "SUBAS"),
+    (r'\-\-',                      "DECREMENT"),
+    (r'\*',                         "MUL"),
+    (r'\*\=',                      "MULAS"),
+    (r'\/',                         "DIV"),
+    (r'\/\=',                      "DIVAS"),
+    (r'\%',                         "MOD"),
+    (r'\%\=',                      "MODAS"),
+    (r'\*\*\=',                   "POWAS"),                    
     (r'\*\*',                      "POW"),
     (r'\/\/\=',                   "FLOORDIVAS"),
     (r'\/\/',                      "FLOORDIV"),
-    (r'\*\=',                      "MULAS"),
-    (r'\/\=',                      "DIVAS"),
-    (r'\+\=',                      "ADDAS"),
-    (r'\-\=',                      "SUBAS"),
-    (r'\%\=',                      "MODAS"),
-    (r'\-\>',                      "ARROW"),
-    (r'\+',                         "ADD"),
-    (r'\-',                         "SUB"),
-    (r'\*',                         "MUL"),
-    (r'\/',                         "DIV"),
-    (r'\%',                         "MOD"),
+    # Function Operator
+    (r'\=\>',                      "ARROW"),
+    # Logical Operator
     (r'\<\=',                      "LEQ"),
     (r'\<',                         "L"),
     (r'\>\=',                      "GEQ"),
@@ -69,7 +71,7 @@ token_exp = [
 
     (r'\bswitch\b',             "SWITCH"),
     (r'\bcase\b',               "CASE"),
-    (r'\bcontinue\b',           "DEFAULT"), 
+    (r'\bdefault\b',            "DEFAULT"), 
 
     (r'\btry\b',                "TRY"),
     (r'\bcatch\b',              "CATCH"),
@@ -80,8 +82,10 @@ token_exp = [
     (r'\bcontinue\b',           "CONTINUE"), 
     (r'\bbreak\b',              "BREAK"), 
 
-    (r'\bfalse\b',              "FALSE"),
-    (r'\btrue\b',               "TRUE"),
+    (r'\bfalse\b',                   "FALSE"),
+    (r'\btrue\b',                    "TRUE"),
+    (r'\bnull\b',                    "NULL"),
+    (r'\bundefined\b',               "UNDEFINED"),
 
     (r'\bclass\b',              "CLASS"),
     (r'\bfunction\b',           "FUNCTION"),
