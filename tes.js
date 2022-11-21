@@ -15,7 +15,6 @@ console.log(!"aaaa")
 
 let i = 0
 
-i +=1
 
 
 let y = 0
