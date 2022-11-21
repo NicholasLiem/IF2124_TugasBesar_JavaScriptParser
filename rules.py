@@ -91,7 +91,7 @@ token_exp = [
     (r'\bfunction\b',           "FUNCTION"),
     (r'\breturn\b',             "RETURN"),
     (r'\bextends\b',             "EXTENDS"),
-    (r'\bconstructor\b',        "CONSTRUCTOR"),
+    # (r'\bconstructor\b',        "CONSTRUCTOR"),
     (r'\bnew\b',                "NEW"),
 
     (r'\bfrom\b',               "FROM"),
@@ -106,13 +106,13 @@ token_exp = [
     (r'\bvar\b',                "TYPE"),
     (r'\bconst\b',              "TYPE"),
 
-    (r'\bthis.\b',                  "ID"),
+    (r'\bthis.[A-Za-z_][A-Za-z0-9_]*\b',                  "ID"),
     (r'\,',                     "COMMA"),
-    (r'\w+[.]\w+',              "KARTITIK"),
+    (r'\w+([.]\w+)+',              "ID"),
     (r'\.',                     "TITIK"),
     (r'\bis\b',                 "IS"),
     
-    
+
     (r'\'\'\'[(?!(\'\'\'))\w\W]*\'\'\'',       "MULTILINE"),
     (r'\"\"\"[(?!(\"\"\"))\w\W]*\"\"\"',       "MULTILINE"),
     (r'[A-Za-z_][A-Za-z0-9_]*',                 "ID"),
