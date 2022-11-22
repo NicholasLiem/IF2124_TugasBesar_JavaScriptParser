@@ -9,10 +9,14 @@ def isTerminal(string):
                 "BREAK","FALSE","TRUE","CLASS","FUNCTION","RETURN","FROM","IMPORT","AS",
                 "RAISE","WITH","NULL","TYPE","COMMA","KARTITIK","TITIK","IS","MULTILINE","ID"]
 
-# def read_grammar(nama_file):
-#     file = open(nama_file)
-#     lines = file.read()
-#     file.close()
-#     print(lines)
+def read_grammar(nama_file):
+    files = open(nama_file)
+    cfg = []
+    for file in files : 
+        file = file.replace('->',"")
+        cfg.append(file.split())
+    return cfg
 
-# read_grammar('grammarCFG.txt')
+def convert_grammar(cfg):
+    print("gatau susah")
+
