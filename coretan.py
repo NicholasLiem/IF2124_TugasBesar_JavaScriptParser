@@ -74,6 +74,6 @@ def convert_grammar(grammar):
 def makeCnf(filename):
     cfg = read_grammar(filename)
     cnf = convert_grammar(cfg)
-    write_cnf(cnf)
+    write_cnf(cnf, "cnf.txt")
 
 makeCnf('grammar_cfg.txt')

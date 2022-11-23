@@ -48,9 +48,25 @@
 //     }
 // }
 
-var x = console.log("hai") + console.log("haha")
-x
+// var x = console.log("hai") + console.log("haha")
+// x
 // Car.obj2.hai
 // Car.jalan()
 // Car.hai()
+var a = [ 
+    4
+    ,
+5
+]
+
+function c (d) {
+    return 1
+}
+
+var e = [1,2,3,4]
+
+while (e){
+    console.log(1)
+}
+
 
