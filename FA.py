@@ -30,3 +30,27 @@ operator = ['+', '-', '*' , '/', '<', '>' , '%', '^', '&', '>>>',
 def check_arithmetic_expression(input):
     # Menghapus spasi
     input = input.replace(' ', '')
+
+def q0(input) -> bool:
+    if (len(input) == 0):
+        print("Woi")
+        return True
+    if(input[0] == '.'):
+        q1(input[1:])
+    if (input[0] in digits):
+        q0(input[1:])
+
+def q1(input):
+    firstChar = input[0]
+    if(firstChar == '.'):
+        return False
+    else:
+        for char in digits:
+            if (firstChar == char):
+                q0(input[1:])
+
+def q2(input):
+    ...
+    # Cek expression
+
+print(q0('12'))
