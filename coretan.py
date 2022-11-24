@@ -84,6 +84,7 @@ def convert_grammar(cfg_grammar):
                 else:
                     productions.append(new_rule)
                 add_rule(new_rule)
+    
     return result
 
 
