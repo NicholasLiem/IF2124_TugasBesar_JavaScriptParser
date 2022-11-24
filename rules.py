@@ -3,7 +3,7 @@ import sys
 # list token untuk syntax ke token
 token_exp = [  
     (r'[ \t]+',                                      None),                         # Tab char
-    (r'\/\/ [^\n]*',                                 None),                         # single line comment
+    (r'\/\/[^\n]*',                                 None),                         # single line comment
     (r'[\n]+ [ \t]* \/\* [(?!(\'\'\'))\w\W]* \*\/',  None),                         # /* multi line comment*/
 
     # Integer and String
