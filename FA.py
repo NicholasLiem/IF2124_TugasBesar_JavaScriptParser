@@ -12,9 +12,9 @@ def check_var(input):
     return flag
 
 digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-operator = ['+', '-', '*' , '/', '<', '>', '%', '^', '&', '>>>', 
-            '<<', '>>', '|', '~', '==', '>=', '<=', '===', '!=', '!==',
-            '&&', '||', '!', '??', '**']
+# operator = ['+', '-', '*' , '/', '<', '>', '%', '^', '&', '>>>', 
+#             '<<', '>>', '|', '~', '==', '>=', '<=', '===', '!=', '!==',
+#             '&&', '||', '!', '??', '**']
 single_operator = ['+', '-', '*', '/', '<', '>', '%', '^', '&', '>',
                     '<', '|', '~', '=', '!', '?']
 
@@ -87,11 +87,11 @@ def q2(input : str) -> bool:
             if(len(input) > 1):
                 return q0(input[1:])
 
-        elif (firstChar == '!'):
-            return q2(input[1:])
+        # elif (firstChar == '!'):
+        #     return q2(input[1:])
 
-        elif (firstChar == '~'):
-            return q2(input[1:])
+        # elif (firstChar == '~'):
+        #     return q2(input[1:])
 
         elif (firstChar == '*'):
             if(len(input) > 2):
@@ -110,9 +110,20 @@ def q2(input : str) -> bool:
             if (len(input) > 1):
                 return q0(input[1:])
 
+        elif (firstChar == '&'):
+            if(len(input) > 2):
+                if(input[1] == '&'):
+                    return q0(input[2:])
+            if(len(input) > 1):
+                return q0(input[1:])
+
         elif (firstChar == '/'):
-            ...
-            
+            if(len(input) > 2):
+                if (input[1] == '/'):
+                    return False
+            if(len(input) > 1):
+                return q0(input[1:])
+
         elif (firstChar == '+' or firstChar == '-' or firstChar == '^' or firstChar == '%'):
             return q0(input[1:])
 
@@ -126,4 +137,4 @@ def q2(input : str) -> bool:
 
 # Kasus OPERATOR baru ~ ato ! harus expression dulu, OPERATOR sendiri tanpa angka
 
-print(check_arithmetic_expression('1 + 1'))
+print(check_arithmetic_expression('1 + 1 * 10 ** 2 - 1 % 2 ^ 10 & 1 - .1 > 1 < 2 >= 1 << 2 >> 1 | 1 || 2 / 1.1'))
