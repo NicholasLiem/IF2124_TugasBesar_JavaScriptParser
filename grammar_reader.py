@@ -42,22 +42,29 @@ def convert_grammar(grammar):
     # Meng-convert cfg menjadi cnf
     global RULE
 
+    #Siapin array kosong untuk menampung unit productions dan result
     unit_productions, result = [], []
     idx = 0
 
+    #Looping semua aturan dalam CFG
     for rule in grammar:
         new_rules = []
+        #Jika jumlah aturan = 2 dan bukan terminal
         if len(rule) == 2 and rule[1][0] != "'":
+            #Tambahkan aturan ke dalam unit_productions
             unit_productions.append(rule)
             add_new_rule(rule)
             continue
+        #Jika jumlah aturan > 2 
         elif len(rule) > 2:
+            #Buat variabel baru yang namanya menggunakan metode enumerate
             terminals = [(item, i) for i, item in enumerate(rule) if item[0] == "'"]
             if isTerminal(rule[0]):
                 for item in terminals:
                     rule[item[1]] = f"{rule[0]}{str(idx)}"
                     new_rules += [f"{rule[0]}{str(idx)}", item[0]]
                 idx += 1
+            
             while len(rule) > 3:
                 new_rules.append([f"{rule[0]}{str(idx)}", rule[1], rule[2]])
                 rule = [rule[0]] + [f"{rule[0]}{str(idx)}"] + rule[3:]
