@@ -2,7 +2,7 @@ from grammar_reader import read_grammar,convert_grammar
 from rules import createToken
 from cyk import CYK_parse
 
-tokens = createToken('tes.js')
+tokens = createToken('tes2.js')
 print(tokens)
 cfg = read_grammar('grammar_cfg.txt')
 # print(cfg)
