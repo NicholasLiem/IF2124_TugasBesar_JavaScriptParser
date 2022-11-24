@@ -1,7 +1,9 @@
-for(i = 0 ; i < 3;i ++){
-    if(i ==1){
-        console.log(i)
-    }else{
-        
-    }
+var x = 2
+while(x <= 2){
+    console.log(x)
+    x++
 }
+// while(x <= 5){
+//     console.log(x)
+//     x++
+// }
