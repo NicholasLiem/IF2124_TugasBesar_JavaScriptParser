@@ -130,7 +130,7 @@ def CYK_parse(CNF, arrayInput):
 tokens = rules.createToken("tes.js")
 print(tokens)
 cfg = read_grammar("grammar_cfg.txt")
-print("D0ne reading")
+print("Done reading")
 cnf = convert_grammar(cfg)
 print("CNF DONE")
 write_cnf(cnf,'cnf.txt')
