@@ -16,7 +16,7 @@ digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 #             '<<', '>>', '|', '~', '==', '>=', '<=', '===', '!=', '!==',
 #             '&&', '||', '!', '??', '**']
 single_operator = ['+', '-', '*', '/', '<', '>', '%', '^', '&', '>',
-                    '<', '|', '~', '=', '!', '?']
+                    '<', '|', '=', '?']
 
 def check_arithmetic_expression(input : str) -> bool:
     # Menghapus spasi
@@ -30,7 +30,9 @@ def q0(input : str) -> bool:
     if (len(input) == 0):
         return True
     else:
-        if (input[0] in digits):
+        if (input[0] == '!' or input[0] == '~'):
+            return q3(input)
+        elif (input[0] in digits):
             return q0(input[1:])
         elif (input[0] == '.'):
             return q1(input[1:])
@@ -49,6 +51,15 @@ def q1(input : str) -> bool:
             return q2(input)
         else:
             return False
+
+def q3(input: str) -> bool:
+    if(len(input) == 0):
+        return False
+    else:
+        if(input[0] == '~' or input[0] == '!'):
+            return q3(input[1:])
+        else:
+            return q0(input[1:])
 
 # Cek expression
 def q2(input : str) -> bool:
@@ -135,6 +146,5 @@ def q2(input : str) -> bool:
         else:
             return False
 
-# Kasus OPERATOR baru ~ ato ! harus expression dulu, OPERATOR sendiri tanpa angka
-
-print(check_arithmetic_expression('1 + 1 * 10 ** 2 - 1 % 2 ^ 10 & 1 - .1 > 1 < 2 >= 1 << 2 >> 1 | 1 || 2 / 1.1'))
+# print(check_arithmetic_expression('1 + 1 * 10 ** 2 - 1 % 2 ^ 10 & 1 - .1 > 1 < 2 >= 1 << 2 >> 1 | 1 || 2 / 1.1 + !! 1'))
+# print(check_arithmetic_expression('!'))
