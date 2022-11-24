@@ -7,11 +7,11 @@ token_exp = [
     (r'\/\*[\n]*[\t]*[\w\W]*[\n]*[\t]*\*\/',        None),                         # /* multi line comment*/
 
     # Integer and String
-    (r'\"[^\"\n]*\"',                           "STRING"),                          # "string"  (apapun yang bukan " dan string)    
-    (r'\'[^\'\n]*\'',                           "STRING"),                          # 'string'
-    (r'[\+\-]?[0-9]*\.[0-9]+',                  "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
-    (r'[\+\-]?[1-9][0-9]+',                     "NUM"),                             # membaca int, untuk 2 angka atau lebih
-    (r'[\+\-]?[0-9]',                           "NUM"),                             # membaca int untuk tepat satu angka
+    (r'\"[^\"\n]*\"',                                   "STRING"),                          # "string"  (apapun yang bukan " dan string)    
+    (r'\'[^\'\n]*\'',                                   "STRING"),                          # 'string'
+    (r'[\+\-]?[0-9]*\.[0-9]+(?!\w)',                    "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
+    (r'[\+\-]?[1-9][0-9]+(?!\w)',                       "NUM"),                             # membaca int, untuk 2 angka atau lebih
+    (r'[\+\-]?[0-9](?!\w)',                             "NUM"),                             # membaca int untuk tepat satu angka
 
     # Delimiter
     (r'\n',                                 "NEWLINE"),                             
@@ -125,7 +125,7 @@ token_exp = [
 
     (r'\'\'\'[(?!(\'\'\'))\w\W]*\'\'\'',                "MULTILINE"),
     (r'\"\"\"[(?!(\"\"\"))\w\W]*\"\"\"',                "MULTILINE"),
-    (r'[A-Za-z_][A-Za-z0-9_]*',                         "ID"),
+    (r'[A-Za-z0-9_][A-Za-z0-9_]*',                         "ID"),
     
 
 ]
@@ -191,7 +191,7 @@ def createToken(namaFile):
     file.close()
     return(lexer(input,token_exp))
 
-createToken('tes.js')
+print(createToken('tes.js'))
     
 
 '''
