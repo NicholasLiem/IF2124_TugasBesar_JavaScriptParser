@@ -25,9 +25,20 @@ token_exp = [
     (r'\:',                                 "TITIKDUA"),
 
     # Operator
+    # Assignment Operator
+    (r'\=(?!\=)',                           "EQ"),
+    (r'\+\=',                               "ADDAS"),
+    (r'\+\+',                               "INCREMENT"),
+    (r'\-\=',                               "SUBAS"),
+    (r'\-\-',                               "DECREMENT"),
+    (r'\*\=',                               "MULAS"),
+    (r'\/\=',                               "DIVAS"),
+    (r'\%\=',                               "MODAS"),
+    (r'\*\*\=',                             "POWAS"),   
+    (r'\|\=',                               "BITORAS"),   
+    (r'\&\=',                               "BITANDAS"),   
+    (r'\?\?\=',                             "NULLISHAS"),
     # Arithmatical Operator
-    (r'\+\=',                      "ADDAS"),
-    (r'\+\+',                      "INCREMENT"),
     (r'\+',                                 "ADD"),
     (r'\-',                                 "SUB"),
     (r'\*',                                 "MUL"),
@@ -55,20 +66,7 @@ token_exp = [
     (r'\&\&',                               "AND"),
     (r'\|\|',                               "OR"),
     (r'\!',                                 "NOT"),
-    (r'\?\?',                               "NULLISH"),
-    # Assignment Operator
-    (r'\=(?!\=)',                           "EQ"),
-    (r'\+\=',                               "ADDAS"),
-    (r'\+\+',                               "INCREMENT"),
-    (r'\-\=',                               "SUBAS"),
-    (r'\-\-',                               "DECREMENT"),
-    (r'\*\=',                               "MULAS"),
-    (r'\/\=',                               "DIVAS"),
-    (r'\%\=',                               "MODAS"),
-    (r'\*\*\=',                             "POWAS"),   
-    (r'\|\=',                               "BITORAS"),   
-    (r'\&\=',                               "BITANDAS"),   
-    (r'\?\?\=',                             "NULLISHAS"),  
+    (r'\?\?',                               "NULLISH"),  
 
     # Keyword
     (r'\bif\b',                         "IF"),
