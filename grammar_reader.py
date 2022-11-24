@@ -28,11 +28,11 @@ def addRule(rule):
 
 def add_rule(rule):
     # Menambah aturan ke kamus
-    global RULE_DICT
+    global RULE
 
-    if rule[0] not in RULE_DICT:
-        RULE_DICT[rule[0]] = []
-    RULE_DICT[rule[0]].append(rule[1:])
+    if rule[0] not in RULE:
+        RULE[rule[0]] = []
+    RULE[rule[0]].append(rule[1:])
 
 def convert_grammar(grammar):
     # Meng-convert cfg menjadi cnf
@@ -75,6 +75,3 @@ def convert_grammar(grammar):
                     unit_prod.append(new_rule)
                 add_rule(new_rule)
     return result
-
-cfg = read_grammar('grammar_cfg.txt')
-print(convert_grammar(cfg))
