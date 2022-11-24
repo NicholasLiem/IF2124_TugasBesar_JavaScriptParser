@@ -28,5 +28,9 @@ def check_var(input):
 digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 operator = ['+', '-', '*' , '/', '<', '>' , '%', '^', '&', '>>>', '<<', '>>', '|', '~']
 
+# Note: Perlu cek bilangan koma, kalo < bedain sama <<, sama >, >>, >>>
+# Expression: Number {Operator} Number
+
 def check_arithmetic_expression(input):
-    ...
+    # Menghapus spasi
+    input = input.replace(' ', '')
