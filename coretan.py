@@ -133,8 +133,7 @@ cfg = read_grammar("grammar_cfg.txt")
 print("Done reading")
 cnf = convert_grammar(cfg)
 print("CNF DONE")
-write_cnf(cnf, "cnf.txt")
-
+write_cnf(cnf,'cnf.txt')
 if(CYK_parse(cnf,tokens)):
     print("Bener")
 else:

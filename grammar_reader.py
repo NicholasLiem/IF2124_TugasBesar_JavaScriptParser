@@ -13,11 +13,15 @@ def isTerminal(string):
     return string in terminals
 
 def read_grammar(nama_file):
+    #Buka file yang berisi aturan - aturan grammar dalam bentuk A -> B 
     files = open(nama_file)
     cfg = []
     for file in files : 
+        #Menghapus tanda panah
         file = file.replace('->',"")
+        #Menggabungkan aturan ke dalam cfg, dalam bentuk array
         cfg.append(file.split())
+    #Mengembalikan CFG dalam bentuk array
     return cfg
 
 def addRule(rule):
@@ -26,7 +30,7 @@ def addRule(rule):
         RULE[rule[0]] = []
     RULE[rule[0]].append(rule[1:])
 
-def add_rule(rule):
+def add_new_rule(rule):
     # Menambah aturan ke kamus
     global RULE
 
@@ -38,14 +42,14 @@ def convert_grammar(grammar):
     # Meng-convert cfg menjadi cnf
     global RULE
 
-    unit_prod, result = [], []
+    unit_productions, result = [], []
     idx = 0
 
     for rule in grammar:
         new_rules = []
         if len(rule) == 2 and rule[1][0] != "'":
-            unit_prod.append(rule)
-            add_rule(rule)
+            unit_productions.append(rule)
+            add_new_rule(rule)
             continue
         elif len(rule) > 2:
             terminals = [(item, i) for i, item in enumerate(rule) if item[0] == "'"]
@@ -58,20 +62,19 @@ def convert_grammar(grammar):
                 new_rules.append([f"{rule[0]}{str(idx)}", rule[1], rule[2]])
                 rule = [rule[0]] + [f"{rule[0]}{str(idx)}"] + rule[3:]
                 idx += 1
-        add_rule(rule)
+        add_new_rule(rule)
         result.append(rule)
         if new_rules:
             result.extend(new_rules)
 
-    while unit_prod:
-        rule = unit_prod.pop()
+    while unit_productions:
+        rule = unit_productions.pop()
         if rule[1] in RULE:
             for item in RULE[rule[1]]:
                 new_rule = [rule[0]] + item
-                print(new_rule)
                 if len(new_rule) > 2 or new_rule[1][0] == "'":
                     result.insert(0,new_rule)
                 else:
-                    unit_prod.append(new_rule)
-                add_rule(new_rule)
+                    unit_productions.append(new_rule)
+                add_new_rule(new_rule)
     return result

@@ -155,7 +155,6 @@ def lexer(input, token_exp):
         if(input[posAbs] == '\n'):
             posRel = 1
             line +=1
-        match = None
 
         # Looping token di dalam token_exp
         for token in token_exp:
@@ -168,7 +167,7 @@ def lexer(input, token_exp):
             isMatched = regex.match(input,posAbs)
 
             #Jika ada regex yang memenuhi value, cek value tag
-            if(isMatched):
+            if(isMatched):  
                 #Jika tag tidak bernilai None, masukan tag ke dalam token result
                 if (tag):
                     tokenResult.append(tag)
@@ -192,7 +191,7 @@ def createToken(namaFile):
     file.close()
     return(lexer(input,token_exp))
 
-print(createToken('tes.js'))
+createToken('tes.js')
     
 
 '''
