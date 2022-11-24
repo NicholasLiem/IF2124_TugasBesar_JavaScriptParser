@@ -38,7 +38,20 @@ token_exp = [
     (r'\|\=',                               "BITORAS"),   
     (r'\&\=',                               "BITANDAS"),   
     (r'\?\?\=',                             "NULLISHAS"),
-    # Arithmatical Operator
+    # Logical Operator
+    (r'\<\=',                               "LEQ"),
+    (r'\>\=',                               "GEQ"),
+    (r'\<',                                 "L"),
+    (r'\>',                                 "G"),
+    (r'\!\=\=',                             "STRICTNEQ"),
+    (r'\!\=(?!\=)',                         "NEQ"),
+    (r'\=\=\=',                             "STRICTEQ"),
+    (r'\=\=(?!\=)',                         "ISEQ"),
+    (r'\&\&',                               "AND"),
+    (r'\|\|',                               "OR"),
+    (r'\!',                                 "NOT"),
+    (r'\?\?',                               "NULLISH"),  
+    # Aritmetical Operator
     (r'\+',                                 "ADD"),
     (r'\-',                                 "SUB"),
     (r'\*',                                 "MUL"),
@@ -54,19 +67,6 @@ token_exp = [
     (r'\?',                                 "TERNARY"),
     # Function Operator
     (r'\=\>',                               "ARROW"),
-    # Logical Operator
-    (r'\<',                                 "L"),
-    (r'\>',                                 "G"),
-    (r'\<\=',                               "LEQ"),
-    (r'\>\=',                               "GEQ"),
-    (r'\!\=\=',                             "STRICTNEQ"),
-    (r'\!\=(?!\=)',                         "NEQ"),
-    (r'\=\=\=',                             "STRICTEQ"),
-    (r'\=\=(?!\=)',                         "ISEQ"),
-    (r'\&\&',                               "AND"),
-    (r'\|\|',                               "OR"),
-    (r'\!',                                 "NOT"),
-    (r'\?\?',                               "NULLISH"),  
 
     # Keyword
     (r'\bif\b',                         "IF"),
@@ -192,7 +192,7 @@ def createToken(namaFile):
     file.close()
     return(lexer(input,token_exp))
 
-createToken('tes2.js')
+print(createToken('tes.js'))
     
 
 '''
