@@ -2,9 +2,9 @@ import re
 import sys
 # list token untuk syntax ke token
 token_exp = [  
-    (r'[ \t]+',                                      None),                         # Tab char
+    (r'[ \t]+',                                     None),                         # Tab char
     (r'\/\/[^\n]*',                                 None),                         # single line comment
-    (r'[\n]+ [ \t]* \/\* [(?!(\'\'\'))\w\W]* \*\/',  None),                         # /* multi line comment*/
+    (r'\/\*[\n]*[\t]*[\w\W]*[\n]*[\t]*\*\/',        None),                         # /* multi line comment*/
 
     # Integer and String
     (r'\"[^\"\n]*\"',                           "STRING"),                          # "string"  (apapun yang bukan " dan string)    
