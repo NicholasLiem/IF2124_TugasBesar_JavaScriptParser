@@ -85,3 +85,16 @@ def convert_grammar(grammar):
                     unit_productions.append(new_rule)
                 add_new_rule(new_rule)
     return result
+
+def write_cnf(fileCNF,fileName):
+    # Menulis hasil convert ke dalam file txt
+    file = open(fileName, 'w')
+    for cnf in fileCNF:
+        file.write(cnf[0])
+        file.write(" -> ")
+        for i in cnf[1:]:
+            file.write(i)
+            file.write(" ")
+        file.write("\n")
+    file.close()
+

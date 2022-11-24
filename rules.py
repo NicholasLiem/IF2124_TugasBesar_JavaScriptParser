@@ -6,6 +6,13 @@ token_exp = [
     (r'\/\/[^\n]*',                                 None),                         # single line comment
     (r'\/\*[\n]*[\t]*[\w\W]*[\n]*[\t]*\*\/',        None),                         # /* multi line comment*/
 
+    # Integer and String
+    (r'\"[^\"\n]*\"',                                   "STRING"),                          # "string"  (apapun yang bukan " dan string)    
+    (r'\'[^\'\n]*\'',                                   "STRING"),                          # 'string'
+    (r'[\+\-]?[0-9]*\.[0-9]+(?!\w)',                    "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
+    (r'[\+\-]?[1-9][0-9]+(?!\w)',                       "NUM"),                             # membaca int, untuk 2 angka atau lebih
+    (r'[\+\-]?[0-9](?!\w)',                             "NUM"),                             # membaca int untuk tepat satu angka
+
     # Delimiter
     (r'\n',                                 "NEWLINE"),                             
     (r'\(',                                 "KBKI"),                            # Kurung Biasa kiri
@@ -60,13 +67,6 @@ token_exp = [
     (r'\?',                                 "TERNARY"),
     # Function Operator
     (r'\=\>',                               "ARROW"),
-
-    # Integer and String
-    (r'\"[^\"\n]*\"',                                   "STRING"),                          # "string"  (apapun yang bukan " dan string)    
-    (r'\'[^\'\n]*\'',                                   "STRING"),                          # 'string'
-    (r'[\+\-]?[0-9]*\.[0-9]+(?!\w)',                    "NUM"),                             # membaca float (boleh diberikan + atau -), boleh tidak ada angka depan koma (e.g. -.9, +.34, +64,7) 
-    (r'[\+\-]?[1-9][0-9]+(?!\w)',                       "NUM"),                             # membaca int, untuk 2 angka atau lebih
-    (r'[\+\-]?[0-9](?!\w)',                             "NUM"),                             # membaca int untuk tepat satu angka
 
     # Keyword
     (r'\bif\b',                         "IF"),
