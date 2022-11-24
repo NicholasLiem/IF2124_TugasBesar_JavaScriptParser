@@ -26,6 +26,8 @@ token_exp = [
 
     # Operator
     # Arithmatical Operator
+    (r'\+\=',                      "ADDAS"),
+    (r'\+\+',                      "INCREMENT"),
     (r'\+',                                 "ADD"),
     (r'\-',                                 "SUB"),
     (r'\*',                                 "MUL"),
@@ -190,7 +192,7 @@ def createToken(namaFile):
     file = open(namaFile)
     input = file.read()
     file.close()
-    print(lexer(input,token_exp))
+    return(lexer(input,token_exp))
 
 createToken('tes2.js')
     

@@ -1,3 +1,5 @@
+import rules
+
 RULE = {} # Kamus untuk menyimpan cnf
 
 def write_cnf(fileCNF,namafile):
@@ -71,11 +73,8 @@ def convert_grammar(cfg_grammar):
         result.append(rule)
         if new_rules:
             result.extend(new_rules)
-    # print(productions)
     while productions:
-        # print("masuk")
         rule = productions.pop()
-        # print(rule)
         if rule[1] in RULE:
             for item in RULE[rule[1]]:
                 new_rule = [rule[0]] + item
@@ -95,5 +94,47 @@ def makeCnf(filepath):
     cnf = convert_grammar(cfg)
     # menuliskan hasil cnf ke txt
     write_cnf(cnf, "cnf.txt")
+        
+def toDict(grammar):
+    ans = {}
+    for g in grammar:
+        ans[str(g[0])] = []
 
-makeCnf('grammar_cfg.txt')
+    for g in grammar:
+        prod = []
+        for i in range(1,len(g)):
+            temp = g[i]
+            prod.append(temp)
+        ans[str(g[0])].append(prod)
+    return ans
+
+def CYK_parse(CNF, arrayInput):
+    N = len(arrayInput)
+    CNF = toDict(CNF)
+    T = [[set([]) for j in range(N)] for i in range(N)]
+
+    for j in range(N):
+        for head, body in CNF.items():
+            for rule in body:
+                if len(rule) == 1 and rule[0] == "'" +arrayInput[j] + "'":
+                    T[j][j].add(head)
+
+        for i in range(j, -1, -1):
+            for k in range(i, j):
+                for head, body in CNF.items():
+                    for rule in body:
+                        if len(rule) == 2 and rule[0] in T[i][k] and rule[1] in T[k + 1][j]:
+                            T[i][j].add(head)
+    return len(T[0][N - 1]) != 0
+
+tokens = rules.createToken("tes.js")
+print(tokens)
+cfg = read_grammar("grammar_cfg.txt")
+print("D0ne reading")
+cnf = convert_grammar(cfg)
+print("CNF DONE")
+
+if(CYK_parse(cnf,tokens)):
+    print("Bener")
+else:
+    print("Salah")
