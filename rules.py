@@ -14,15 +14,15 @@ token_exp = [
     (r'[\+\-]?[0-9]',                           "NUM"),                             # membaca int untuk tepat satu angka
 
     # Delimiter
-    (r'\n',                             "NEWLINE"),                             
-    (r'\(',                             "KBKI"),                            # Kurung Biasa kiri
-    (r'\)',                             "KBKA"),                            # Kurung biasa kanan
-    (r'\[',                             "KSKI"),                            # Kurung Siku KIri
-    (r'\]',                             "KSKA"),                            # Kurung Siku kanan
-    (r'\{',                             "KKKI"),                            # Kurung Kurawal Kiri
-    (r'\}',                             "KKKA"),                            # Kurung kurawal kanan
-    (r'\;',                             "TITIKKOMA"),                       
-    (r'\:',                             "TITIKDUA"),
+    (r'\n',                                 "NEWLINE"),                             
+    (r'\(',                                 "KBKI"),                            # Kurung Biasa kiri
+    (r'\)',                                 "KBKA"),                            # Kurung biasa kanan
+    (r'\[',                                 "KSKI"),                            # Kurung Siku KIri
+    (r'\]',                                 "KSKA"),                            # Kurung Siku kanan
+    (r'\{',                                 "KKKI"),                            # Kurung Kurawal Kiri
+    (r'\}',                                 "KKKA"),                            # Kurung kurawal kanan
+    (r'\;',                                 "TITIKKOMA"),                       
+    (r'\:',                                 "TITIKDUA"),
 
     # Operator
     # Arithmatical Operator
@@ -32,41 +32,41 @@ token_exp = [
     (r'\/',                                 "DIV"),
     (r'\%',                                 "MOD"),                 
     (r'\*\*',                               "POW"),
-    (r'\/\/',                               "FLOORDIV"),
     (r'\^',                                 "XOR"),   
     (r'\<\<',                               "BITLEFT"),
     (r'\>\>',                               "BITRIGHT"),
     (r'\|',                                 "BITOR"),
     (r'\&',                                 "BITAND"),
     (r'\~',                                 "BITNOT"),
-    (r'\?\?',                               "NULLISHOP"),
+    (r'\?',                                 "TERNARY"),
     # Function Operator
     (r'\=\>',                               "ARROW"),
     # Logical Operator
     (r'\<',                                 "L"),
     (r'\>',                                 "G"),
+    (r'\<\=',                               "LEQ"),
+    (r'\>\=',                               "GEQ"),
     (r'\!\=\=',                             "STRICTNEQ"),
     (r'\!\=(?!\=)',                         "NEQ"),
     (r'\=\=\=',                             "STRICTEQ"),
     (r'\=\=(?!\=)',                         "ISEQ"),
-    (r'\=(?!\=)',                           "EQ"),
     (r'\&\&',                               "AND"),
     (r'\|\|',                               "OR"),
     (r'\!',                                 "NOT"),
+    (r'\?\?',                               "NULLISH"),
     # Assignment Operator
+    (r'\=(?!\=)',                           "EQ"),
     (r'\+\=',                               "ADDAS"),
     (r'\+\+',                               "INCREMENT"),
     (r'\-\=',                               "SUBAS"),
     (r'\-\-',                               "DECREMENT"),
     (r'\*\=',                               "MULAS"),
     (r'\/\=',                               "DIVAS"),
-    (r'\<\=',                               "LEQ"),
-    (r'\>\=',                               "GEQ"),
     (r'\%\=',                               "MODAS"),
     (r'\*\*\=',                             "POWAS"),   
-    (r'\/\/\=',                             "FLOORDIVAS"),
-    
-
+    (r'\|\=',                               "BITORAS"),   
+    (r'\&\=',                               "BITANDAS"),   
+    (r'\?\?\=',                             "NULLISHAS"),  
 
     # Keyword
     (r'\bif\b',                         "IF"),

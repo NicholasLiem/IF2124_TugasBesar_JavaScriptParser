@@ -1,9 +1,3 @@
-var a = 1
+var a = 5
 
-a = ~a
-
-console.log(a &=2)
-
-a == 5
-a === 6
-a !== 7
+console.log(~!a)
