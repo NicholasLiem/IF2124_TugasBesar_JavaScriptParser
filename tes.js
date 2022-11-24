@@ -65,8 +65,9 @@ function c (d) {
 
 var e = [1,2,3,4]
 
-while (e){
-    console.log(1)
-}
+// while (e){
+//     console.log(1)
+// }
+
 
 
