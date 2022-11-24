@@ -70,8 +70,8 @@ token_exp = [
 
     # Keyword
     (r'\bif\b',                         "IF"),
-    (r'\belse\b',                       "ELSE"),
     (r'\belse if\b',                    "ELSE_IF"),
+    (r'\belse\b',                       "ELSE"),
 
     (r'\bfor\b',                        "FOR"), 
     (r'\bin\b',                         "IN"),
