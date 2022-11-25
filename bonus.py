@@ -8,7 +8,6 @@ value=["NUM","STRING","BOOL","LIST"]
 tanda_kurung = ["KBKI","KBKA","KKKI","KKKA","KSKI","KSKA"]
 temp = ["FUNCTION","FOR","IF","ELSE","ELSE_IF","WHILE","TRY","CATCH","FINALLY"]
 
-
 def cekToken(token):
     token = [value for value in token if value != "NEWLINE"]
     index= 0
