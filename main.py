@@ -9,7 +9,7 @@ def displayResult(string):
     print("=================================")
 
 print("TOKENIZING...")
-tokens = createToken('tes.js')
+tokens = createToken('tes2.js')
 print(tokens)
 print("TOKENIZING - DONE")
 cekToken(tokens)
