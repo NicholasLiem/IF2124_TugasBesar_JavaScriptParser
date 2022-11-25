@@ -1,10 +1,7 @@
-var Car = {
-    jenis : "Yamaha",
-    roda : 4,
-    jalan : function(){
-        console.log("gassss")
+function set(a,b){
+    if(a == b){
+        return true;
+    }else{
+        return false;
     }
 }
-
-var jenis = Car.jenis
-console.log(jenis)

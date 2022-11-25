@@ -11,8 +11,7 @@ def displayResult(string):
 fileTes = input("Masukkan file JS yang mau diperiksa : ")
 
 print("TOKENIZING...")
-tokens = createToken('tes2.js')
-print(tokens)
+tokens = createToken(fileTes)
 print("TOKENIZING - DONE")
 cekToken(tokens)
 print("READING CFG GRAMMAR...")
