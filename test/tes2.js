@@ -16,3 +16,6 @@ catch({err}) {
 finally {
     console.log("hihi")
 }
+
+
+
