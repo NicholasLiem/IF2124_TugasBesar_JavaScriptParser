@@ -1,8 +1,10 @@
-switch(t){
-    case 1 : 
-        console.log("haha")
-    default : 
-        console.log("hah")
-    default : 
-        console.log("double")
+var Car = {
+    jenis : "Yamaha",
+    roda : 4,
+    jalan : function(){
+        console.log("gassss")
+    }
 }
+
+var jenis = Car.jenis
+console.log(jenis)
