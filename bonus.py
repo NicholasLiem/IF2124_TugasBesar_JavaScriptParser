@@ -8,7 +8,6 @@ value=["NUM","STRING","BOOL","LIST"]
 tanda_kurung = ["KBKI","KBKA","KKKI","KKKA","KSKI","KSKA"]
 #belum bisa handle list dan object 
 
-
 def cekToken(token):
     token = [value for value in token if value != "NEWLINE"]
     index= 0
@@ -69,6 +68,18 @@ def cekToken(token):
             if("RETURN" in switch_content):
                 print("ERROR : SYNTAX RETURN, SWITCH CAN'T RETURN ANY VALUE ")
                 sys.exit(1)
+        elif(token[index] == "TYPE"):
+            if( index+1 < len(token) and token[index + 1] == "ID"):
+                if(index + 2 < len(token)):
+                    if not (token[index + 2] == "EQ"):   
+                        print("ERROR : SYNTAX ASSIGN VARIABEL HARUS MENGGUNAKAN '='")
+                        sys.exit(1)
+        elif(token[index] == "CASE"):
+            print("ERROR : SYNTAX CASE HARUS BERADA DALAM SWITCH BLOCK")
+            sys.exit(1)
+        elif(token[index] == "DEFAULT"):
+            print("ERROR : SYNTAX DEFAULT HARUS BERADA DALAM SWITCH BLOCK")
+            sys.exit(1)
         index +=1
 
 token = createToken("tes.js")
