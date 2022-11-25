@@ -8,10 +8,11 @@ def displayResult(string):
     print("    RESULT : SYNTAX "+string)
     print("=================================")
 
-fileTes = input("Masukkan file JS yang mau diperiksa : ")
+testFile = input("Masukkan file JS yang mau diperiksa : ")
+testFilePath = "./test/"+testFile
 
 print("TOKENIZING...")
-tokens = createToken('tes2.js')
+tokens = createToken(testFilePath)
 print(tokens)
 print("TOKENIZING - DONE")
 cekToken(tokens)

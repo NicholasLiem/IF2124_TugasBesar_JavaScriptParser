@@ -82,5 +82,5 @@ def cekToken(token):
             sys.exit(1)
         index +=1
 
-token = createToken("tes.js")
-cekToken(token)
+# token = createToken("tes.js")
+# cekToken(token)
