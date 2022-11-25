@@ -1,12 +1,8 @@
-switch (x) {
+switch(t){
     case 1 : 
-        console.log("halo")
-        switch(y){
-            case 10 : 
-                console.log("seupulu")
-            default : 
-                console.log("defail")
-        }
+        console.log("haha")
     default : 
-        console.log("default")
+        console.log("hah")
+    default : 
+        console.log("double")
 }

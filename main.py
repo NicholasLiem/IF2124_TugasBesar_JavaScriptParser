@@ -9,9 +9,10 @@ def displayResult(string):
     print("=================================")
 
 print("TOKENIZING...")
-tokens = createToken('tes.js')
+tokens = createToken('test/inputReject.js')
 print("TOKENIZING - DONE")
 cekToken(tokens)
+print(tokens)
 print("READING CFG GRAMMAR...")
 cfg = read_grammar('grammar_cfg.txt')
 # print(cfg)
