@@ -25,13 +25,13 @@
 
 ## **Implementation Screenshots**
 Screenshot contoh source code yang valid pada JavaScript
-<img src="./assets/image_isi_file_true.jpg" alt="Source Code True">
+<img src="./assets/image_isi_file_true.jpg" alt="Source Code True"> <br>
 Screenshot hasil output *true* pada program 
-<img src="./assets/hasil_true.jpg" alt="Source Code True">
+<img src="./assets/hasil_true.jpg" alt="Source Code True"> <br>
 Screenshot contoh source code yang tidak valid pada JavaScript
-<img src="./assets/image_isi_file_false.jpg" alt="Source Code True">
+<img src="./assets/image_isi_file_false.jpg" alt="Source Code True"> <br>
 Screenshot hasil output *false* pada program 
-<img src="./assets/hasil_false.jpg" alt="Source Code True">
+<img src="./assets/hasil_false.jpg" alt="Source Code True"> <br>
 
 
 
