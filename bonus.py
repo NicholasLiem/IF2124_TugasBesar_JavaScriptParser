@@ -32,10 +32,10 @@ def cekToken(token):
                 if_content.append(token[index])
                 index += 1
             if("BREAK" in if_content):
-                print("ERROR : Tidak bisa melakukan BREAK dalam statement IF")
+                print("ERROR : SYNTAX BREAK, IF CAN'T USE BREAK")
                 sys.exit(1)
             if("RETURN" in if_content):
-                print("ERROR : Tidak bisa melakukan RETURN dalam statement IF")
+                print("ERROR :SYNTAX RETURN, IF CAN'T RETURN ANY VALUE")
                 sys.exit(1)
                 break
         elif(token[index] == "WHILE"):
@@ -47,17 +47,28 @@ def cekToken(token):
                 while_content.append(token[index])
                 index += 1
             if("RETURN" in while_content):
-                print("ERROR : Tidak bisa melakukan RETURN")
+                print("ERROR : SYNTAX RETURN, WHILE CAN'T RETURN ANY VALUE")
                 sys.exit(1)
                 break
         elif(token[index] == "ELSE"):
-            print("ERROR : SYNTAX ELSE ")
+            print("ERROR : SYNTAX ELSE, EXPECTED IF STATEMENT BEFORE")
             sys.exit(1)
             break
         elif(token[index] == "ELSE_IF"):
-            print("ERROR : SYNTAX ELSE IF ")
+            print("ERROR : SYNTAX ELSE IF, EXPECTED IF STATEMENT BEFORE ")
             sys.exit(1)
             break
+        elif(token[index] == "SWITCH"):
+            switch_content =[]
+            count = 1
+            while(count%2 != 0 and index < len(token)):
+                if(token[index] == "KKKA"):
+                    count += 1
+                switch_content.append(token[index])
+                index += 1
+            if("RETURN" in switch_content):
+                print("ERROR : SYNTAX RETURN, SWITCH CAN'T RETURN ANY VALUE ")
+                sys.exit(1)
         index +=1
 
 token = createToken("tes.js")

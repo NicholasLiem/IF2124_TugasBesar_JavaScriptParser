@@ -23,6 +23,7 @@ token_exp = [
     (r'\}',                                 "KKKA"),                            # Kurung kurawal kanan
     (r'\;',                                 "TITIKKOMA"),                       
     (r'\:',                                 "TITIKDUA"),
+    (r'\=\>',                               "ARROW"),
 
     # Operator
     # Assignment Operator
@@ -66,7 +67,7 @@ token_exp = [
     (r'\~',                                 "BITNOT"),
     (r'\?',                                 "TERNARY"),
     # Function Operator
-    (r'\=\>',                               "ARROW"),
+    
 
     # Keyword
     (r'\bif\b',                         "IF"),

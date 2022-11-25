@@ -1,59 +1,17 @@
-// function tes(a){
-
-//     while ( a == 0){
-//         return "hihi"
-//         a--
-//     }
-//     if (a == 0){
-//         console.log(5)
-//     } else if ( a){
-//         return 0
-//     }
-// }
-
-// a = 5
-
-// while ( a > 0){
-//     if (a == 5){
-//         console.log('aaaa')
-//     }
-//     a--
-// }
-
-// do {
-//     if (a == 10){
-//         console.log("hehh")
-//     }
-//     a++
-// } while (a < 20)
-
-function do_something(x) {
-  if (x == 4) {
-    return +9;
-  } else if (x + 4 == 1) {
-    if (true) {
-      return 3;
-    } else {
-      return 2;
+var Car = {
+    jenis : "Toyota Yamaha",
+    roda : 4,
+    suara : function(){
+        console.log("ngenggg")
+    },
+    penumpang : {
+        "penumpang 1" : "Andi",
+        penumpang2 : "Budi"
     }
-  } else if (x == 32) {
-    return 4;
-  } else {
-    return "Momen"
-  }
 }
 
-var a = do_something(4)
-
-console.log(a)
-
-/* else if (x + 4 == 1) {
-      if (true) {
-        return 3
-      } else {
-        return 2
-      }
-    }
-    */
-
-    
+console.log(Car.roda)
+Car.roda += 4
+Car.suara()
+console.log(Car.penumpang["penumpang 1"])
+console.log(Car.penumpang.penumpang2)
