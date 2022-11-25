@@ -13,7 +13,6 @@ testFilePath = "./test/"+testFile
 
 print("TOKENIZING...")
 tokens = createToken(testFilePath)
-print(tokens)
 print("TOKENIZING - DONE")
 cekToken(tokens)
 print("READING CFG GRAMMAR...")
@@ -24,6 +23,7 @@ print("READING CFG GRAMMAR - DONE")
 print("CONVERTING CFG TO CNF...")
 cnf = convert_grammar(cfg)
 # write_cnf(cnf, "cnf.txt")
+# cnf_old = read_cnf()
 print("CONVERTING CFG TO CNF - DONE")
 
 

@@ -69,7 +69,7 @@ def convert_grammar(grammar):
         result.append(rule)
         if new_rules:
             result.extend(new_rules)
-    
+
     while unit_productions:
         rule = unit_productions.pop()
         if rule[1] in RULE:
@@ -82,15 +82,26 @@ def convert_grammar(grammar):
                 add_new_rule(new_rule)
     return result
 
-# def write_cnf(fileCNF,fileName):
-#     # Menulis hasil convert ke dalam file txt
-#     file = open(fileName, 'w')
-#     for cnf in fileCNF:
-#         file.write(cnf[0])
-#         file.write(" -> ")
-#         for i in cnf[1:]:
-#             file.write(i)
-#             file.write(" ")
-#         file.write("\n")
-#     file.close()
+def write_cnf(fileCNF,fileName):
+    # Menulis hasil convert ke dalam file txt
+    file = open(fileName, 'w')
+    for cnf in fileCNF:
+        file.write(cnf[0])
+        file.write(" -> ")
+        for i in cnf[1:]:
+            file.write(i)
+            file.write(" ")
+        file.write("\n")
+    file.close()
+
+def read_cnf():
+    files = open("grammar_reader.txt")
+    cnf = []
+    for file in files : 
+        #Menghapus tanda panah
+        file = file.replace('->',"")
+        #Menggabungkan aturan ke dalam cnf, dalam bentuk array
+        cnf.append(file.split())
+    #Mengembalikan cnf dalam bentuk array
+    return cnf
 

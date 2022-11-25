@@ -1,21 +1,10 @@
-a = 0
-try {
-    while (a < 5){
-        if (a == 4){
-            break
-        }
-        a++
-    }
-    if (a == 4){
-        throw ("sesuatu")
-    }
+var Car = {
+    nama : "tes"
 }
-catch({err}) {
-    console.log("yah masuk error")
-}
-finally {
-    console.log("hihi")
-}
-
-
-
+// a = [1,2,2,3]
+// delete a[0]
+// console.log(Car.nama)
+x = 3
+delete (x + 4)
+delete Car.nama
+// console.log(Car.nama)
