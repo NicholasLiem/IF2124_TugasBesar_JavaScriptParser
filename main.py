@@ -10,7 +10,7 @@ def displayResult(string):
 
 print("TOKENIZING...")
 tokens = createToken('tes.js')
-# print(tokens)
+print(tokens)
 print("TOKENIZING - DONE")
 cekToken(tokens)
 
