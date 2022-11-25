@@ -1,5 +1,6 @@
 import re
 import sys
+from FA import check_var
 # list token untuk syntax ke token
 token_exp = [  
     (r'[ \t]+',                                     None),                         # Tab char
@@ -39,6 +40,8 @@ token_exp = [
     (r'\|\=',                               "BITORAS"),   
     (r'\&\=',                               "BITANDAS"),   
     (r'\?\?\=',                             "NULLISHAS"),
+    (r'\>\>\=',                             "BITRIGHTAS"),
+    (r'\<\<\=',                             "BITLEFTAS"),
     # Logical Operator
     (r'\<\=',                               "LEQ"),
     (r'\>\=',                               "GEQ"),
@@ -142,6 +145,16 @@ x(?!y)          -> munculnya karakter x tidak boleh diikuti oleh y
 
 """
 
+def checkVariabel(input,start,end):
+    temp = ""
+    while(start < end):
+        temp += input[start]
+        start += 1
+    if (not (check_var(temp))):
+        print("ERROR : NAMA VARIABEL",temp,"SALAH")
+        sys.exit(1)
+    
+
 def lexer(input, token_exp):
     posAbs = 0 # Menggambarkan posisi absolute terhadap posisi start file
     posRel = 1 # Menggambarkan posisi relative terhadap new line
@@ -152,6 +165,7 @@ def lexer(input, token_exp):
 
     #Membaca file sampai selesai 
     while(posAbs < len(input)):
+        checkVar = False
         #Jika membaca new line, posRel direset ke 1 dan jumlah line bertambah 1
         if(input[posAbs] == '\n'):
             posRel = 1
@@ -171,6 +185,9 @@ def lexer(input, token_exp):
             if(isMatched):  
                 #Jika tag tidak bernilai None, masukan tag ke dalam token result
                 if (tag):
+                    if(tag == "ID"):
+                        startVar = posAbs
+                        checkVar = True
                     tokenResult.append(tag)
                 break #break kalau sudah ketemu dan terjadi akuisisi, sehingga tidak melanjutkan looping sampai token_exp terakhir
         
@@ -182,6 +199,9 @@ def lexer(input, token_exp):
             sys.exit(1)
         else:
             posAbs = isMatched.end(0) #pindahin pos ke akhir pembacaan value yang matched dengan regex
+            if(checkVar):
+                checkVariabel(input,startVar,posAbs)
+            checkVar = False
         posRel += 1
     #Mengembalikan token result
     return tokenResult

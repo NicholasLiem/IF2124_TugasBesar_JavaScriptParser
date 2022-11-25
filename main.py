@@ -2,7 +2,7 @@ from grammar_reader import *
 from rules import createToken
 from cyk import CYK_parse
 from bonus import cekToken
-
+import sys
 def displayResult(string):
     print("=================================")
     print("    RESULT : SYNTAX "+string)
@@ -13,7 +13,6 @@ tokens = createToken('tes2.js')
 print(tokens)
 print("TOKENIZING - DONE")
 cekToken(tokens)
-
 print("READING CFG GRAMMAR...")
 cfg = read_grammar('grammar_cfg.txt')
 # print(cfg)
@@ -21,7 +20,7 @@ print("READING CFG GRAMMAR - DONE")
 
 print("CONVERTING CFG TO CNF...")
 cnf = convert_grammar(cfg)
-# write_cnf(cnf, "cnf.txt")
+write_cnf(cnf, "cnf.txt")
 print("CONVERTING CFG TO CNF - DONE")
 
 

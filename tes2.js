@@ -1,31 +1,37 @@
-function myFunction() {
-    const message = document.getElementById("p01");
-    message.innerHTML = "";
-    let x = document.getElementById("demo").value;
-    try {
-      if(x == "") {
-        throw "is empty"};
-      if(isNaN(x)) {
-        throw "is not a number"};
-      x = Number(x);
-      if(x > 10) {
-        throw "is too high"};
-      if(x < 5) {
-        throw "is too low"};
-    }
-    catch({err}) {
-      message.innerHTML = "Error: " + err + ".";
-    }
-    finally  {
-      document.getElementById("demo").value = "";
-    }
-  }
+const c = (x) => {
+    return x + 2
+}  
 
-// const c = (x) => {
-//     return x+2
-// }   
+y = 7 
+try {
+    if (y > 6){
+        console.log('xixixii')
+        throw ("xixxiixi")
+    }
+    else {
+        throw ("hahaha")
+    }
+}
+catch({err}) {
+    console.log("huhu")
+}
+finally {
+    console.log("hihi")
+}
 
-// console.log(c(7))
+
+//   if(x == "") {
+//     throw "is empty"};
+//   if(isNaN(x)) {
+//     throw "is not a number"};
+//   x = Number(x);
+//   if(x > 10) {
+//     throw "is too high"};
+//   if(x < 5) {
+//     throw "is too low"};
+ 
+
+// console.log(c(5))
 
 // lista = [1,2,3,4,5]
 

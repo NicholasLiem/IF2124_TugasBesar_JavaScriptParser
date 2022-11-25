@@ -11,7 +11,7 @@ def isTerminal(string):
                 "BREAK","FALSE","TRUE","CLASS","FUNCTION","RETURN","FROM","IMPORT","AS",
                 "RAISE","WITH","NULL","TYPE","COMMA","KARTITIK","TITIK","IS","MULTILINE","ID","NEW",
                 "BITORAS", "BITANDAS", "NULLISHAS", "NULLISH", "BITLEFT", "BITRIGHT", "BITOR",
-                "BITAND", "BITNOT", "TERNARY", "STRICTEQ", "STRICTNEQ"]
+                "BITAND", "BITNOT", "TERNARY", "STRICTEQ", "STRICTNEQ", "BITLEFTAS", "BITRIGHTAS"]
     return string in terminals
 
 def read_grammar(nama_file):

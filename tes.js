@@ -1,17 +1,12 @@
-var Car = {
-    jenis : "Toyota Yamaha",
-    roda : 4,
-    suara : function(){
-        console.log("ngenggg")
-    },
-    penumpang : {
-        "penumpang 1" : "Andi",
-        penumpang2 : "Budi"
-    }
+switch (x) {
+    case 1 : 
+        console.log("halo")
+        switch(y){
+            case 10 : 
+                console.log("seupulu")
+            default : 
+                console.log("defail")
+        }
+    default : 
+        console.log("default")
 }
-
-console.log(Car.roda)
-Car.roda += 4
-Car.suara()
-console.log(Car.penumpang["penumpang 1"])
-console.log(Car.penumpang.penumpang2)
