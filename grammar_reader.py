@@ -26,12 +26,6 @@ def read_grammar(nama_file):
     #Mengembalikan CFG dalam bentuk array
     return cfg
 
-def addRule(rule):
-    global RULE
-    if(rule[0] not in RULE):
-        RULE[rule[0]] = []
-    RULE[rule[0]].append(rule[1:])
-
 def add_new_rule(rule):
     # Menambah aturan ke kamus
     global RULE
@@ -52,22 +46,22 @@ def convert_grammar(grammar):
     for rule in grammar:
         new_rules = []
         #Jika jumlah aturan = 2 dan bukan terminal
-        if len(rule) == 2 and rule[1][0] != "'":
+        if (len(rule) == 2 and rule[1][0] != "'"):
             #Tambahkan aturan ke dalam unit_productions
             unit_productions.append(rule)
             add_new_rule(rule)
             continue
         #Jika jumlah aturan > 2 
-        elif len(rule) > 2:
+        elif (len(rule) > 2):
             #Buat variabel baru yang namanya menggunakan metode enumerate
-            terminals = [(item, i) for i, item in enumerate(rule) if item[0] == "'"]
-            if isTerminal(rule[0]):
-                for item in terminals:
+            items = [(item, i) for i, item in enumerate(rule) if item[0] == "'"]
+            if (isTerminal(rule[0])):
+                for item in items:
                     rule[item[1]] = f"{rule[0]}{str(idx)}"
                     new_rules += [f"{rule[0]}{str(idx)}", item[0]]
                 idx += 1
             
-            while len(rule) > 3:
+            while (len(rule) > 3):
                 new_rules.append([f"{rule[0]}{str(idx)}", rule[1], rule[2]])
                 rule = [rule[0]] + [f"{rule[0]}{str(idx)}"] + rule[3:]
                 idx += 1
@@ -75,7 +69,7 @@ def convert_grammar(grammar):
         result.append(rule)
         if new_rules:
             result.extend(new_rules)
-
+    
     while unit_productions:
         rule = unit_productions.pop()
         if rule[1] in RULE:
@@ -88,15 +82,15 @@ def convert_grammar(grammar):
                 add_new_rule(new_rule)
     return result
 
-def write_cnf(fileCNF,fileName):
-    # Menulis hasil convert ke dalam file txt
-    file = open(fileName, 'w')
-    for cnf in fileCNF:
-        file.write(cnf[0])
-        file.write(" -> ")
-        for i in cnf[1:]:
-            file.write(i)
-            file.write(" ")
-        file.write("\n")
-    file.close()
+# def write_cnf(fileCNF,fileName):
+#     # Menulis hasil convert ke dalam file txt
+#     file = open(fileName, 'w')
+#     for cnf in fileCNF:
+#         file.write(cnf[0])
+#         file.write(" -> ")
+#         for i in cnf[1:]:
+#             file.write(i)
+#             file.write(" ")
+#         file.write("\n")
+#     file.close()
 
